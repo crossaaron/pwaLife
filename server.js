@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
-const PORT = 1234;
+let PORT = process.env.PORT || 1234;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+require("./routes/htmlRoutes.js")(app);
 
 
-app.use('/', express.static('./index.html'));
 
 app.listen(PORT, () => {
-    console.log('Server Connected on PORT:' + PORT)
+    console.log('Server Connected! 🌎 PORT:' + PORT)
 });
